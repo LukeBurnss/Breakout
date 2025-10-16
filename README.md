@@ -9,19 +9,19 @@ P to pause.
 
 ## Powerups
 
-big/small paddle (blue)
-fast/slow ball (fancy yellow)
+fast/slow ball (blue)
+big/small paddle (fancy yellow)
 fire ball (green)
 
 # Tasklist
 
 ## Suggested fixes
 
-* Fix the compiler issues in the code
+* Fix the compiler issues in the code - DONE
 
 ## Suggested tasks
 
-* Implement mouse input for pad
+* Implement mouse input for pad - DONE
 * Improved VFX (ball trail, paddle hit response, brick particle destruction)
 * Better UI (progress bar rather than timer for countdown).
 * GameLoop
