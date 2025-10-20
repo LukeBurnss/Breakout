@@ -23,7 +23,7 @@ fire ball (green)
 
 * Implement mouse input for pad - DONE 
 * Improved VFX (ball trail, paddle hit response, brick particle destruction)
-* Better UI (progress bar rather than timer for countdown).
+* Better UI (progress bar rather than timer for countdown). - DONE
 * GameLoop
 * Better ball physics (Box2D)
 * Leaderboards
@@ -36,3 +36,4 @@ fire ball (green)
 1:00 mouse input for pad
 1:45 improved vfx (FAILED TO IMPLEMENT SUCCESSFULLY)
 2:30 sfx with pitch scaling
+3:15 progress bar added
