@@ -13,6 +13,10 @@ GameManager::GameManager(sf::RenderWindow* window)
     _masterText.setPosition(50, 400);
     _masterText.setCharacterSize(48);
     _masterText.setFillColor(sf::Color::Yellow);
+
+    if (!_deathSoundBuffer.loadFromFile("sfx/mega_explosion.wav"))
+        std::cout << "Could not load mega explosion sfx from file!";
+    _deathSound.setBuffer(_deathSoundBuffer);
 }
 
 void GameManager::initialize()
@@ -71,7 +75,7 @@ void GameManager::update(float dt, sf::RenderWindow* window)
     _time += dt;
 
 
-    if (_time > _timeLastPowerupSpawned + POWERUP_FREQUENCY && rand()%700 == 0)      // TODO parameterise
+    if (_time > _timeLastPowerupSpawned + POWERUP_FREQUENCY && rand()%700 == 0)
     {
         _powerupManager->spawnPowerup();
         _timeLastPowerupSpawned = _time;
@@ -92,6 +96,10 @@ void GameManager::loseLife()
 {
     _lives--;
     _ui->lifeLost(_lives);
+
+
+    // death sfx
+    _deathSound.play();
 
     // TODO screen shake.
 }
