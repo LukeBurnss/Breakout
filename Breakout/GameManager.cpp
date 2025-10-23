@@ -17,6 +17,13 @@ GameManager::GameManager(sf::RenderWindow* window)
     if (!_deathSoundBuffer.loadFromFile("sfx/mega_explosion.wav"))
         std::cout << "Could not load mega explosion sfx from file!";
     _deathSound.setBuffer(_deathSoundBuffer);
+
+    srand(time(0));
+
+    _gameView = _window->getDefaultView();
+    _originalViewCenter = _gameView.getCenter();
+    _shakeMagnitude = 0.f;
+
 }
 
 void GameManager::initialize()
@@ -70,7 +77,6 @@ void GameManager::update(float dt, sf::RenderWindow* window)
     {
         return;
     }
-
     // timer.
     _time += dt;
 
@@ -90,6 +96,8 @@ void GameManager::update(float dt, sf::RenderWindow* window)
     _paddle->update(dt);
     _ball->update(dt);
     _powerupManager->update(dt);
+
+    updateShake(dt);
 }
 
 void GameManager::loseLife()
@@ -101,11 +109,39 @@ void GameManager::loseLife()
     // death sfx
     _deathSound.play();
 
-    // TODO screen shake.
+    // screen shake
+    _shakeMagnitude = 15.0f;
+}
+
+void GameManager::updateShake(float dt)
+{
+    if (_shakeMagnitude > 0.5)
+    {
+        _shakeMagnitude -= 30 * dt;
+    }
+
+    else _shakeMagnitude = 0.0f;
+}
+
+void GameManager::applyShakeToView()
+{
+    if (_shakeMagnitude > 0)
+    {
+        float randomShakeRotation = (rand() % 200 - 100) / 100.0f * _shakeMagnitude;
+        _gameView.setRotation(randomShakeRotation);
+    }
+
+    else _gameView.setRotation(0);
+
+    _gameView.setCenter(_originalViewCenter);
+
+    _window->setView(_gameView);
 }
 
 void GameManager::render()
 {
+    applyShakeToView();
+
     _paddle->render();
     _ball->render();
     _brickManager->render();

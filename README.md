@@ -37,3 +37,6 @@ fire ball (green)
 1:45 improved vfx (FAILED TO IMPLEMENT SUCCESSFULLY)
 2:30 sfx with pitch scaling
 3:15 progress bar added
+
+# Programming video plan
+add screen shake and sfx for life lost

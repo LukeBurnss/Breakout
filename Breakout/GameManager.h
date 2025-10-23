@@ -20,6 +20,7 @@ public:
     void levelComplete();
     void powerupEffect(POWERUPS pu, float t);
 
+
     Paddle* getPaddle() const;
     BrickManager* getBrickManager() const;
     PowerupManager* getPowerupManager() const;
@@ -49,6 +50,14 @@ private:
 
     sf::SoundBuffer _deathSoundBuffer;
     sf::Sound _deathSound;
+
+    sf::View _gameView;
+    sf::Vector2f _originalViewCenter;
+    float _shakeMagnitude; 
+
+    void updateShake(float dt);
+    void applyShakeToView();
+
 
     static constexpr float PAUSE_TIME_BUFFER = 0.5f;
     static constexpr float POWERUP_FREQUENCY = 7.5f;    // time between minimum powerup spawn
